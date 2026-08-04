@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(python -m app.webhook_server)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/webhook/ticket -H \"Content-Type: application/json\" -d '{\"id\": 201, \"subject\": \"Không thể đăng nhập vào LMS\", \"description\": \"Loi Invalid username or password\", \"reporter_email\": \"active@mindx.edu.vn\"}')",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/webhook/ticket -H \"Content-Type: application/json\" -d '{\"id\": 202, \"subject\": \"Khong dang nhap duoc vao TMS\", \"description\": \"\", \"reporter_email\": \"deactivated.active@mindx.edu.vn\"}')",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/webhook/ticket -H \"Content-Type: application/json\" -d '{\"id\": 203, \"subject\": \"Loi dang nhap he thong noi bo\", \"description\": \"\", \"reporter_email\": \"deactivated.left@mindx.edu.vn\"}')",
+      "Bash(kill %1)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/webhook/ticket -H \"Content-Type: application/json\" -d '{\"id\": 201, \"subject\": \"Khong the dang nhap vao LMS\", \"description\": \"Loi Invalid username or password\", \"reporter_email\": \"active@mindx.edu.vn\"}')",
+      "Bash(curl -s http://127.0.0.1:5000/health)",
+      "Bash(npm test *)",
+      "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
+      "Bash(node -e ' *)",
+      "Bash(npx jest *)",
+      "Bash(rm -rf .tmp-smoke .tmp-smoke2 tickets.json)",
+      "Bash(powershell -NoProfile -Command 'Get-Process node -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowTitle -eq '\\\\'''\\\\'' } | Select-Object Id,StartTime')",
+      "Bash(netstat -ano)",
+      "Bash(powershell -NoProfile -Command \"Stop-Process -Id 20152 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(python -m pytest -q)"
+    ]
+  }
+}
