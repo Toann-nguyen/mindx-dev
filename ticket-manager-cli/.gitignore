@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.log
+tickets.json
+.tmp/
