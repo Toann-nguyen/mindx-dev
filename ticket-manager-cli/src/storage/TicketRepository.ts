@@ -3,6 +3,18 @@ import * as path from 'path';
 import { Ticket } from '../models/Ticket';
 import { StorageError } from '../models/errors';
 
+/**
+ * JSON file-backed storage for tickets.
+ *
+ * Design notes:
+ * - A missing file is treated as "no tickets yet" (empty list), not an error --
+ *   this is what makes `tickets create` work on a completely fresh checkout.
+ * - A file that exists but contains invalid JSON (or JSON that isn't a ticket
+ *   array) is a genuine problem: we raise a StorageError with a clear message
+ *   instead of crashing with a raw SyntaxError or silently losing data.
+ * - Writes are atomic-ish: we write to a temp file then rename over the
+ *   target, so a crash mid-write can't leave a half-written / corrupted file.
+ */
 export class TicketRepository {
   constructor(private readonly filePath: string) {}
 
