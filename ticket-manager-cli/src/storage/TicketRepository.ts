@@ -65,5 +65,9 @@ export class TicketRepository {
 }
 
 function isErrnoException(err: unknown): err is NodeJS.ErrnoException {
+  // Deliberately not `err instanceof Error`: under some test/VM sandboxes
+  // (e.g. Jest's module registry) a built-in error thrown by `fs` may not
+  // share the same Error constructor identity as the local `Error` global,
+  // which would make `instanceof` unreliable here. A shape check is enough.
   return typeof err === 'object' && err !== null && 'code' in err;
 }

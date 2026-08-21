@@ -28,12 +28,17 @@ export interface UpdateTicketInput {
 export interface ListTicketFilters {
   status?: string;
   priority?: string;
+  /** Ticket must include every one of these tags to match. */
   tags?: string[];
 }
 
 const DEFAULT_STATUS: TicketStatus = 'open';
 const DEFAULT_PRIORITY: TicketPriority = 'medium';
 
+/**
+ * Business logic for tickets: validation, id assignment and filtering.
+ * Talks to a TicketRepository for persistence; knows nothing about the CLI.
+ */
 export class TicketService {
   constructor(private readonly repository: TicketRepository) {}
 
